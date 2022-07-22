@@ -2,14 +2,26 @@
 *{border: 1px solid black;
 
 }
-
+body{
+    background-color:rgb(251, 245, 238) ;
+}
 .titulo{
     font-family: 'Edu VIC WA NT Beginner', cursive;
+
+    font-family: 'Quicksand', sans-serif;
+    
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
+    margin-top: 1em;
+    color:rgb(229, 164, 170);
 }
 .row{
-    
     height: auto;
 
+}
+.input{
+    background-color: rgb(251, 245, 238) ; 
+    border-radius: 10px;
+    width: 300px;
 }

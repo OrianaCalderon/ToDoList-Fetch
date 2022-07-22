@@ -26,12 +26,17 @@ const Home = () => {
 
 	return (
 		<div className="container">
+
+
 			<div className="row d-flex justify-content-center">
 				<h1 className="titulo">todos</h1>
-				<input name="task" value={task.task} 
+				<div className="col-4">
+					<input className="input" name="task" value={task.task} 
 				onChange={handleTask} type="text" 
 				placeholder="What needs to be done?"
 				onKeyDown={saveListTask}/>
+				</div>
+				
 			
 				
 				
