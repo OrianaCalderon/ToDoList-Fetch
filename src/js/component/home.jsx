@@ -14,7 +14,7 @@ const Home = () => {
 	)
 	const [listTask, setListTask] = useState ([])
 
-	const handleTask = (event) => {
+	const handleChange = (event) => {
 		 setTask({...task,[event.target.name]: event.target.value})
 		
 	}
@@ -31,10 +31,11 @@ const Home = () => {
 			<div className="row d-flex justify-content-center">
 				<h1 className="titulo">todos</h1>
 				<div className="col-4">
-					<input className="input" name="task" value={task.task} 
-				onChange={handleTask} type="text" 
-				placeholder="What needs to be done?"
-				onKeyDown={saveListTask}/>
+					<input className="input" 
+					name="task" value={task.task} 
+				    onChange={handleChange} type="text" 
+				    placeholder="What needs to be done?"
+				    onKeyDown={saveListTask}/>
 				</div>
 				
 			
