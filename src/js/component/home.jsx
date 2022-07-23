@@ -20,27 +20,55 @@ const Home = () => {
 	}
 
 	const saveListTask =(event)=> {
-		// console.log("ori")
+		 
+		 if (event.key === "Enter"){
+			setListTask([...listTask, task])
+			setTask({task:"", isDone:false})
+		 }
 
+	}
+
+	const deleteTask =(id)=>{
+		
+		let newListTask = listTask.filter((item,index)=>{
+			return (
+				id != index 
+			)
+		})
+        setListTask(newListTask)
 	}
 
 	return (
 		<div className="container">
-
-
 			<div className="row d-flex justify-content-center">
 				<h1 className="titulo">todos</h1>
-				<div className="col-4">
+				<div className="col-12 col-md-6">
 					<input className="input" 
 					name="task" value={task.task} 
 				    onChange={handleChange} type="text" 
 				    placeholder="What needs to be done?"
 				    onKeyDown={saveListTask}/>
+				</div>	
+			</div>
+			<div className="row d-flex justify-content-center">
+				<div className="col col-12 col-md-6">
+					<ul>
+							{listTask.map((item,index)=>{
+								return(
+									<li key={index} onClick={()=>deleteTask(index)}>{item.task}</li>
+								)
+							})}
+					</ul>	
+					{listTask.length}  tasks to do
+					
+
+
+
 				</div>
-				
-			
-				
-				
+
+
+
+
 			</div>
 			
 
