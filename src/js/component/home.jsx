@@ -40,10 +40,13 @@ const Home = () => {
 
 	return (
 		<div className="container">
-			<h1 className="titulo">todos</h1>
-			<div className="row d-flex justify-content-center align-items-center note">
-			    <div className="row d-flex">
-				    <div className="col-12 col-md-6">
+			
+			<div className="row"> <h1 className="titulo">todos</h1></div>
+			<div className="row note">
+				
+				
+			    <div className="row">
+				    <div className="col-12 col-md-6 divInput">
 					    <input className="input" 
 					    name="task" value={task.task} 
 				     onChange={handleChange} type="text" 
@@ -52,15 +55,15 @@ const Home = () => {
 				    </div>	
 			    </div>
 			    <div className="row">
-				    <div className="col col-12 col-md-6">
+				    <div className="col col-12 col-md-6 divUl">
 					    <ul>
 							    {listTask.map((item,index)=>{
 								    return(
-									<li key={index} onClick={()=>deleteTask(index)}>{item.task}</li>
+									<li className="li" key={index} onClick={()=>deleteTask(index)} >{item.task} <i className="fas fa-times"></i> </li>
 								    )
 							    })}
 					    </ul>	
-					{listTask.length}  item left
+					<p className="botton">{listTask.length}  item left</p>
 				    </div>
 					
 			    </div>
