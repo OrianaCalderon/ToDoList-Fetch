@@ -59,7 +59,12 @@ const Home = () => {
 					    <ul>
 							    {listTask.map((item,index)=>{
 								    return(
-									<li className="li" key={index} onClick={()=>deleteTask(index)} ><div className="d-flex"><div className="textoLi">{item.task} </div> <div className="iconoLi"><i className="fas fa-times"></i></div> </div></li>
+									<li className="li" key={index} onClick={()=>deleteTask(index)} >
+										<div className="divLoop d-flex">
+											<div className="textoLi">{item.task} </div> 
+										    <div className="iconoLi"><i className="fas fa-times"></i></div> 
+										</div>
+									</li>
 								    )
 							    })}
 					    </ul>	
