@@ -15,6 +15,7 @@ const Home = () => {
 	const [listTask, setListTask] = useState ([])
 
 	const urlBase = "https://assets.breatheco.de/apis/fake/todos/user"
+	const user = "oriana"
 
 	const handleChange = (event) => {
 		 setTask({...task,[event.target.name]: event.target.value})
@@ -43,13 +44,13 @@ const Home = () => {
 
 const getTodos=async()=>{
 		try{
-			let response = await fetch("https://assets.breatheco.de/apis/fake/todos/user/oriana")
+			let response = await fetch(`${urlBase}/${user}`)
 			let data = await response.json()
 			if (response.status !== 404){
 				setListTask(data)
 				
 			}else {
-				let responseTodos = await fetch("https://assets.breatheco.de/apis/fake/todos/user/oriana" , {
+				let responseTodos = await fetch(`${urlBase}/${user}` , {
 					method:"POST", headers:{ "Content-Type":"application/json"}, body: JSON.stringify([])
 				
 			})
