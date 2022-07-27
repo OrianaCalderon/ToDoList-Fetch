@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React , {useEffect, useState} from "react";
 
 
 //include images into your bundle
@@ -8,11 +8,13 @@ import React , {useState} from "react";
 const Home = () => {
 
 	const [task,setTask] = useState (
-		{ task: "",
+		{ label: "",
 		isDone: false
 		}
 	)
 	const [listTask, setListTask] = useState ([])
+
+	const urlBase = https://assets.breatheco.de/apis/fake/todos/user
 
 	const handleChange = (event) => {
 		 setTask({...task,[event.target.name]: event.target.value})
@@ -26,8 +28,9 @@ const Home = () => {
 			setTask({task:"", isDone:false})
 		 }
 
-	}
+	};
 
+	
 	const deleteTask =(id)=>{
 		
 		let newListTask = listTask.filter((item,index)=>{
@@ -37,6 +40,32 @@ const Home = () => {
 		})
         setListTask(newListTask)
 	}
+
+const getTodos=async()=>{
+		try{
+			let response = await fetch(`${urlBase}/${user}`)
+			let data = await response.json()
+			if (response.status !== 404){
+				setListTask(data)
+				console.log(data)
+			}else {
+				let responseTodos = await fetch("https://assets.breatheco.de/apis/fake/todos/user/oriana")
+			}
+			
+
+		} catch(error){ 
+			console.log()
+
+		}
+	}
+
+	useEffect(()=> {
+		getTodos()
+	},[])
+
+
+
+
 
 	return (
 		<div className="container">
@@ -61,7 +90,7 @@ const Home = () => {
 								    return(
 									<li className="li" key={index} onClick={()=>deleteTask(index)} >
 										<div className="divLoop d-flex">
-											<div className="textoLi">{item.task} </div> 
+											<div className="textoLi">{item.label} </div> 
 										    <div className="iconoLi"><i className="fas fa-times"></i></div> 
 										</div>
 									</li>
