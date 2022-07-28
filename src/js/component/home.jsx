@@ -1,8 +1,6 @@
 import React , {useEffect, useState} from "react";
 
 
-//include images into your bundle
-
 
 //create your first component
 const Home = () => {
@@ -15,7 +13,7 @@ const Home = () => {
 	const [listTask, setListTask] = useState ([])
 
 	const urlBase = "https://assets.breatheco.de/apis/fake/todos/user"
-	const user = "oriana"
+	const user = "fernando"
 
 	const handleChange = (event) => {
 		 setTask({...task,[event.target.name]: event.target.value})
@@ -68,10 +66,6 @@ const getTodos=async()=>{
 	useEffect(()=> {
 		getTodos()
 	},[])
-
-
-
-
 
 	return (
 		<div className="container">
