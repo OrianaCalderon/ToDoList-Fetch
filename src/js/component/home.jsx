@@ -13,14 +13,19 @@ const Home = () => {
 	)
 	const [listTask, setListTask] = useState([])
 
+//variables de la api
 	const urlBase = "https://assets.breatheco.de/apis/fake/todos/user"
 	const user = "oriana"
+
+
 
 	const handleChange = (event) => {
 		setTask({ ...task, [event.target.name]: event.target.value })
 
 	}
 
+
+//agg la tarea en la lista que tengo
 	const saveListTask = async (event) => {
 
 		if (event.key === "Enter") {
@@ -40,27 +45,42 @@ const Home = () => {
 				} catch (error) {
 					console.log(error)
 				}
-
 			}
 		}
-
-
 	};
 
 
-	const deleteTask = (id) => {
+
+//borrar la tarea en la api, se le hace filter y luego put a la lista filtrada
+	const deleteTask = async(id) => {
 
 		let newListTask = listTask.filter((item, index) => {
-			return (
-				id != index
-			)
+			if(id != index){
+				return item
+			}
 		})
-		setListTask(newListTask)
-	}
+
+        try{
+			let response = await fetch(`${urlBase}/${user}`,
+			{
+				method:"PUT",
+				headers: {"Content-Type": "application/json"},
+				body: JSON.stringify(newListTask)
+			})
+
+			if (response.ok){
+
+				getTodos()
+
+			}
+
+		} catch (error){
+
+		}};
 
 
 
-
+//crea el usuario nuevo
 	const getTodos = async () => {
 		try {
 			let response = await fetch(`${urlBase}/${user}`)
@@ -88,9 +108,13 @@ const Home = () => {
 		}
 	}
 
+
+
 	useEffect(() => {
 		getTodos()
 	}, [])
+
+
 
 	return (
 		<div className="container">
