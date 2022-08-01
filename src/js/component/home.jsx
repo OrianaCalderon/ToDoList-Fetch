@@ -15,7 +15,7 @@ const Home = () => {
 
 //variables de la api
 	const urlBase = "https://assets.breatheco.de/apis/fake/todos/user"
-	const user = "oriana"
+	const user = "quintero"
 
 
 
@@ -78,21 +78,23 @@ const Home = () => {
 
 		}};
 
+		
 
 
 //crea el usuario nuevo
 	const getTodos = async () => {
 		try {
 			let response = await fetch(`${urlBase}/${user}`)
-			let data = await response.json()
-			if (response.status !== 404) {
-				setListTask(data)
+			if (response.ok){
+				let data = await response.json()
+					if (response.status !== 404) {
+					setListTask(data)
 
-			} else {
+			}} else {
 				let responseTodos = await fetch(`${urlBase}/${user}`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify()
+					body: JSON.stringify([])
 
 				})
 
